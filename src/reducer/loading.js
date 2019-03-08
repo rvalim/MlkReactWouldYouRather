@@ -1,3 +1,5 @@
+import RECEIVE_DATA from '../action/loading'
+
 function loading(state = true, action) {
     switch (action.type) {
         case RECEIVE_DATA:

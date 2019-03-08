@@ -1,3 +1,10 @@
+import {
+    CREATE_OPTION,
+    DELETE_OPTION, 
+    CHOOSE_OPTION,
+    GET_ALL_OPTION,
+} from '../action/option'
+
 function option(state = [], action) {
     switch (action.type) {
         case CREATE_OPTION:
