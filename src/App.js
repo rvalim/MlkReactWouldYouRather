@@ -1,90 +1,41 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { Component, Fragment } from 'react';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 import './App.css';
-import CreateOption from './component/createOption'
+import Login from './component/login'
+import AddQuestion from './component/addQuestion'
 import Answer from './component/answer'
 import Answers from './component/answereds'
-
-
-const test = [
-  {
-    answer: {
-      id: 1,
-      option: 'A'
-    },
-    question: {
-      id: 1,
-      optionA: 'Ricardo',
-      optionB: 'Valim'
-    }
-  },
-  {
-    answer: {
-      id: 1,
-      option: 'A'
-    },
-    question: {
-      id: 1,
-      optionA: 'Marli',
-      optionB: 'Valim'
-    }
-  },
-  {
-    answer: {
-      id: 1,
-      option: 'A'
-    },
-    question: {
-      id: 1,
-      optionA: 'Regiane',
-      optionB: 'Valim'
-    }
-  },
-  {
-    answer: {
-      id: 1,
-      option: 'B'
-    },
-    question: {
-      id: 1,
-      optionA: 'Ronaldo',
-      optionB: 'Valim'
-    }
-  },
-  {
-    answer: {
-      id: 1,
-      option: 'A'
-    },
-    question: {
-      id: 1,
-      optionA: 'Roberto',
-      optionB: 'Valim'
-    }
-  },
-  {
-    answer: {
-      id: 1,
-      option: 'B'
-    },
-    question: {
-      id: 1,
-      optionA: 'Jandira',
-      optionB: 'Uttembergue'
-    }
-  }
-]
+import Nav from './component/nav'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <CreateOption></CreateOption>
-        <Answer question={{ id: 0, optionA: 'Valim', optionB: 'Ricardo' }}></Answer>
-        <Answers list={test}></Answers>
+      <div>
+        <span>{this.props.loading}</span>
+        <Router>
+          <Nav />
+              <Route path="/login" component={Login} />
+          {this.props.loading === true
+              ? <Redirect to='/login' />
+              : 
+                <Fragment>
+                  <Route path="/" exact component={Answer} />
+                  <Route path="/add" component={AddQuestion} />
+                  <Route path="/history" component={Answers} />
+                  <Route path="/leaderboard" component={Answers} />
+                </Fragment>
+              }
+        </Router>
       </div>
     );
   }
 }
 
-export default App;
+function mapStateToProps({ authedUser }) {
+  return {
+    //loading: authedUser === null
+  }
+}
+
+export default connect(mapStateToProps)(App);

@@ -1,4 +1,4 @@
-import RECEIVE_DATA from '../action/loading'
+import {RECEIVE_DATA} from '../action/loading'
 
 function loading(state = true, action) {
     switch (action.type) {

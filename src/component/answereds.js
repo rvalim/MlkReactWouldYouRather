@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
 const principal = {
     width: '100%'
 }
@@ -22,22 +24,32 @@ class AnswerList extends React.Component {
         super(props)
     }
 
-    listAllAnswers(list) {
-        return list.map(item =>
-            (
-                <div style={principal} key={item.answer.id}>
-                    <div style={first}>
-                        <strong style={item.answer.option === 'A'? choosen : undefined}>
-                            {item.question.optionA}
-                        </strong>
+    getQuestion(id) {
+        return this.props.options.find(p => p.id === id)
+    }
+
+    listAllAnswers() {
+        let result = this.props.data.map(item => 
+                (
+                    <div style={principal} key={item.id}>
+                        <div style={first}>
+                            <strong style={item.option === 'a' ? choosen : undefined}>
+                                {this.getQuestion(item.questionId).optionA}
+                            </strong>
+                        </div>
+                        <div style={second}>
+                            <strong style={item.option === 'b' ? choosen : undefined}>
+                                {this.getQuestion(item.questionId).optionB}
+                            </strong>
+                        </div>
                     </div>
-                    <div style={second}>
-                        <strong style={item.answer.option === 'B'? choosen : undefined}>
-                            {item.question.optionB}
-                        </strong>
-                    </div>
-                </div>
-            )
+                )
+        )
+
+        return (
+            <div>
+                {result}
+            </div>
         )
 
     }
@@ -51,4 +63,11 @@ class AnswerList extends React.Component {
     }
 }
 
-export default AnswerList
+function mapStateToProps({ answer , option }){
+    return {
+        data: answer,
+        options: option
+    }
+}
+
+export default connect(mapStateToProps)(AnswerList)

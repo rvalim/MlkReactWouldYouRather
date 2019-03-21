@@ -1,15 +1,23 @@
 import React from 'react'
+import { ReactReduxContext } from 'react-redux'
+import * as option from '../action/option'
+import store from '../store/store'
 
 class CreateOption extends React.Component {
     constructor(props) {
         super(props);
-        
+
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log(this.optionA.value, this.optionB.value, 'blablabla')
+        let opt = {
+            id: 1,
+            optionA: this.optionA.value,
+            optionB: this.optionB.value
+        }
+        store.dispatch(option.addOptionAction(opt))
     }
 
     render() {
@@ -34,7 +42,6 @@ class CreateOption extends React.Component {
             </form>
         )
     }
-
 }
 
 export default CreateOption
