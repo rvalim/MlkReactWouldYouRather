@@ -1,6 +1,6 @@
 import React from 'react'
-import * as actionAns from '../action/answer'
-import {connect} from 'react-redux'
+import * as action from '../action/answer'
+import { connect } from 'react-redux'
 
 class Answer extends React.Component {
 
@@ -11,33 +11,32 @@ class Answer extends React.Component {
 	}
 
 	handleAnswer(questionId, option) {
-		this.props.dispatch(actionAns.chooseOne(questionId, option))
+		this.props.dispatch(action.chooseOne(questionId, option))
 	}
 
 	render() {
-		let questionsHtm = this.props.options.map(p =>
-			<div>
-				<h3>Would you rather</h3>
-				<button onClick={() => this.handleAnswer(p.id, 'a')}>
-					<strong>{p.optionA}</strong>
-				</button>
-				<h4>OR</h4>
-				<button onClick={() => this.handleAnswer(p.id, 'b')}>
-					<strong>{p.optionB}</strong>
-				</button>
-			</div>
-		)
 		return (
 			<div>
-				{questionsHtm}
+				{this.props.questions.map(p =>
+					<div key={p.id}>
+						<h3>Would you rather</h3>
+						<button onClick={() => this.handleAnswer(p.id, 'a')}>
+							<strong>{p.optionOne.text}</strong>
+						</button>
+						<h4>OR</h4>
+						<button onClick={() => this.handleAnswer(p.id, 'b')}>
+							<strong>{p.optionTwo.text}</strong>
+						</button>
+					</div>
+				)}
 			</div>
 		)
 	}
 }
 
-function mapStateToProps( {option} ) {
+function mapStateToProps({ questions }) {
 	return {
-		options: option
+		questions
 	}
 }
 
