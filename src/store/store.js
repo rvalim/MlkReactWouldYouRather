@@ -1,15 +1,7 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux'
-import answer from '../reducer/answer'
-import option from '../reducer/option'
-import loading from '../reducer/loading'
-import logger from '../midlleware/logger'
+import { createStore } from 'redux'
+import reducer from '../reducer'
+import midleware from '../midleware'
 
-const store = createStore(
-    combineReducers({
-        answer,
-        option,
-        loading,
-    })
-    , applyMiddleware(logger))
-
-export default store
+export default createStore(
+    reducer
+    , midleware)
