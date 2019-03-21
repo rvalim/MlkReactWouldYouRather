@@ -1,40 +1,36 @@
 import React from 'react'
-import { ReactReduxContext } from 'react-redux'
-import * as option from '../action/option'
+import * as action from '../action/questions'
 import store from '../store/store'
 
-class CreateOption extends React.Component {
+class Createquestion extends React.Component {
     constructor(props) {
         super(props);
-
-        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        let opt = {
-            id: 1,
-            optionA: this.optionA.value,
-            optionB: this.optionB.value
+        let question = {
+            optionOneText: this.questionA.value,
+            optionTwoText: this.questionB.value
         }
-        store.dispatch(option.addOptionAction(opt))
+        store.dispatch(action.handleAddQuestion(question))
     }
 
     render() {
         return (
             <form
-                onSubmit={this.handleSubmit}>
-                <h3>Create new Option</h3>
+                onSubmit={this.handleSubmit.bind(this)}>
+                <h3>Create new question</h3>
                 <h4>Would you rather</h4>
                 <input
                     type='text'
                     placeholder='Example: Work all day long'
-                    ref={(input) => this.optionA = input} />
+                    ref={(input) => this.questionA = input} />
                 <h5>or</h5>
                 <input
                     type='text'
                     placeholder='Example: Going to the beach'
-                    ref={(input) => this.optionB = input} />
+                    ref={(input) => this.questionB = input} />
                 <div>
                     <input type="submit" value="Save" />
                     <input type="reset" value="Cancel" />
@@ -44,4 +40,4 @@ class CreateOption extends React.Component {
     }
 }
 
-export default CreateOption
+export default Createquestion
