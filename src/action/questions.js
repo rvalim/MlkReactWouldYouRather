@@ -38,7 +38,7 @@ function _getAllQuestions() {
 
 export function getAllQuestions() {
     return (dispatch, getState) => {
-        return data._getQuestions(question)
+        return data._getQuestions()
             .then(question => dispatch(_getAllQuestions(question)))
     }
 }

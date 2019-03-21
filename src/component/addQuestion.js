@@ -13,7 +13,7 @@ class Createquestion extends React.Component {
             optionOneText: this.questionA.value,
             optionTwoText: this.questionB.value
         }
-        store.dispatch(action.handleAddQuestion(question))
+        store.dispatch(action.addQuestion(question))
     }
 
     render() {

@@ -1,7 +1,7 @@
 import { createStore } from 'redux'
 import reducer from '../reducer'
-import midleware from '../midleware'
+import middleware from '../middleware'
 
 export default createStore(
     reducer
-    , midleware)
+    , middleware)
