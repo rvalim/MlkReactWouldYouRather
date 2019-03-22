@@ -1,5 +1,5 @@
 import React from 'react'
-import * as action from '../action/answers'
+import * as action from '../action/users'
 import { connect } from 'react-redux'
 
 class Answer extends React.Component {
