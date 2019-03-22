@@ -7,6 +7,8 @@ import Login from './component/login'
 import AddQuestion from './component/addQuestion'
 import Answer from './component/answer'
 import History from './component/history'
+import LogoutPage from './component/logout'
+import {PrivateRoute} from './component/privateRoute'
 import Nav from './component/nav'
 
 class App extends Component {
@@ -15,22 +17,19 @@ class App extends Component {
   }
 
   render() {
+    const {authedUser} =this.props
+    console.log('App',authedUser)
     return (
       <div>
-        <span>{this.props.loading}</span>
         <Router>
           <Nav />
-              <Route path="/login" component={Login} />
-          {this.props.loading === true
-              ? <Redirect to='/login' />
-              : 
-                <Fragment>
-                  <Route path="/" exact component={Answer} />
-                  <Route path="/add" component={AddQuestion} />
-                  <Route path="/history" component={History} />
-                  <Route path="/leaderboard" component={null} />
-                </Fragment>
-              }
+          <Route path="/login" component={Login} />
+          <Fragment>
+            <PrivateRoute path="/answer" component={Answer} authed={authedUser}/>
+            <PrivateRoute path="/add" component={AddQuestion} authed={authedUser} />
+            <PrivateRoute path="/history" component={History} authed={authedUser} />
+            <PrivateRoute path="/logout" component={LogoutPage} authed={authedUser} />
+          </Fragment>
         </Router>
       </div>
     );
@@ -39,7 +38,7 @@ class App extends Component {
 
 function mapStateToProps({ authedUser }) {
   return {
-    //loading: authedUser === null
+    authedUser
   }
 }
 

@@ -2,11 +2,11 @@ import * as data from '../utils/data'
 
 export const GET_USERS = 'GET_USERS'
 export const SET_USERS = 'SET_USERS'
-export const SEL_OPTION = 'SEL_OPTION'
+export const ANS_QUESTION = 'ANS_QUESTION'
 
 function _chooseOne(authedUser, qid, answer) {
     return {
-        type: SEL_OPTION,
+        type: ANS_QUESTION,
         authedUser, 
         qid,
         answer

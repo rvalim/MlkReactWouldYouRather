@@ -1,7 +1,7 @@
 import {
     GET_USERS,
     SET_USERS,
-    SEL_OPTION,
+    ANS_QUESTION,
 } from '../action/users'
 
 function users(state = {}, action) {
@@ -13,7 +13,7 @@ function users(state = {}, action) {
                 ...state,
                 ...action.users
             }
-        case SEL_OPTION:
+        case ANS_QUESTION:
             const {authedUser, qid, answer} = action
             const aux = state
             aux[authedUser].answers[qid] = answer
