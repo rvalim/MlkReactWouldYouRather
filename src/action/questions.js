@@ -31,9 +31,7 @@ export function addQuestion(question) {
         //dispatch(showLoading())
 
         return data._saveQuestion(question)
-            .then(res => {
-                dispatch(_addQuestion(res))
-            })
+            .then(res => dispatch(_addQuestion(res)))
         //.then(() => dispatch(hideLoading()))
     }
 }

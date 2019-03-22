@@ -14,6 +14,7 @@ function _chooseOne(authedUser, qid, answer) {
 export function chooseOne(qid, answer) {
     return (dispatch, getState) => {
         const { authedUser, questions } = getState()
+        console.log('chooseOne', `#${qid}#`, questions[qid], answer, questions)
         const qOne = questions[qid].optionOne.text
         const qTwo = questions[qid].optionTwo.text
         const res = qOne === answer ? 'optionOne' : (qTwo === answer? 'optionTwo' : undefined)

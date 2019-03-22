@@ -9,7 +9,7 @@ function questions(state = {}, action) {
         case ADD_QUESTION:
             return {
                 ...state,
-                [action.id]: {
+                [action.question.id]: {
                     ...action.question
                 }
             }
