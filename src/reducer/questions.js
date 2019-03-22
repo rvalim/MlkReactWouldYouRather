@@ -9,7 +9,9 @@ function questions(state = {}, action) {
         case ADD_QUESTION:
             return {
                 ...state,
-                ...action.question
+                [action.id]: {
+                    ...action.question
+                }
             }
         case SET_QUESTIONS:
             return {
