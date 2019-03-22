@@ -1,12 +1,12 @@
 import {
-    CHOOSE_OPTION
-} from '../action/answer'
+    SEL_OPTION
+} from '../action/answers'
 
 let answers = []
 
 function chooseOption(state = answers, action) {
     switch (action.type) {
-        case CHOOSE_OPTION:
+        case SEL_OPTION:
             return state.concat([
                 {
                     id: 1,

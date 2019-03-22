@@ -1,5 +1,5 @@
 import React from 'react'
-import * as action from '../action/answer'
+import * as action from '../action/answers'
 import { connect } from 'react-redux'
 
 class Answer extends React.Component {
@@ -10,25 +10,36 @@ class Answer extends React.Component {
 		this.handleAnswer = this.handleAnswer.bind(this)
 	}
 
-	handleAnswer(questionId, option) {
-		this.props.dispatch(action.chooseOne(questionId, option))
+	formatQuestion(question) {
+		const { id } = question
+		const optionOne = question.optionOne.text
+		const optionTwo = question.optionTwo.text
+
+		return (
+			<div key={id}>
+				<h3>Would you rather</h3>
+				<button onClick={() => this.handleAnswer(id, optionOne)}>
+					<strong>{optionOne}</strong>
+				</button>
+				<h4>OR</h4>
+				<button onClick={() => this.handleAnswer(id, optionTwo)}>
+					<strong>{optionTwo}</strong>
+				</button>
+			</div>
+		)
+	}
+
+	handleAnswer(questionId, answer) {
+		this.props.dispatch(action.chooseOne(questionId, answer))
 	}
 
 	render() {
+		const { questions } = this.props
+		const keys = Object.keys(questions)
+
 		return (
 			<div>
-				{this.props.questions.map(p =>
-					<div key={p.id}>
-						<h3>Would you rather</h3>
-						<button onClick={() => this.handleAnswer(p.id, 'a')}>
-							<strong>{p.optionOne.text}</strong>
-						</button>
-						<h4>OR</h4>
-						<button onClick={() => this.handleAnswer(p.id, 'b')}>
-							<strong>{p.optionTwo.text}</strong>
-						</button>
-					</div>
-				)}
+				{keys.map(p => this.formatQuestion(questions[p]))}
 			</div>
 		)
 	}
