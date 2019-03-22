@@ -20,9 +20,10 @@ function questions(state = {}, action) {
             }
         case GET_ALL_QUESTIONS:
             return state
+        default:
+            return state
     }
 
-    return state
 }
 
 export default questions

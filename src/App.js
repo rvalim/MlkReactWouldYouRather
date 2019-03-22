@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import './App.css';
+import {PrivateRoute} from './component/privateRoute'
 import { handleInitialData } from './action/shared'
 import Login from './component/login'
 import AddQuestion from './component/addQuestion'
 import Answer from './component/answer'
 import History from './component/history'
 import LogoutPage from './component/logout'
-import {PrivateRoute} from './component/privateRoute'
 import Nav from './component/nav'
 
 class App extends Component {
@@ -18,7 +18,6 @@ class App extends Component {
 
   render() {
     const {authedUser} =this.props
-    console.log('App',authedUser)
     return (
       <div>
         <Router>

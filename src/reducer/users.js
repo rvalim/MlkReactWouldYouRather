@@ -21,9 +21,10 @@ function users(state = {}, action) {
             return {
                 ...aux
             }
+        default:
+            return state
     }
 
-    return state
 }
 
 export default users

@@ -3,10 +3,6 @@ import * as action from '../action/questions'
 import store from '../store/store'
 
 class Createquestion extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     handleSubmit(e) {
         e.preventDefault();
         let question = {

@@ -20,10 +20,6 @@ const choosen = {
 }
 
 class AnswerList extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-
     getQuestion(id) {
         return this.props.options.find(p => p.id === id)
     }
