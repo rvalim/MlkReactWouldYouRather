@@ -1,17 +1,21 @@
 import {
     ADD_QUESTION,
-    DEL_QUESTION, 
+    SET_QUESTIONS,
     GET_ALL_QUESTIONS,
 } from '../action/questions'
 
-const test = []
-
-function questions(state = test, action) {
+function questions(state = {}, action) {
     switch (action.type) {
         case ADD_QUESTION:
-            return state.concat([action.question])
-        case DEL_QUESTION:
-            return state.filter(p => p.id !== action.id)
+            return {
+                ...state,
+                ...action.question
+            }
+        case SET_QUESTIONS:
+            return {
+                ...state,
+                ...action.questions
+            }
         case GET_ALL_QUESTIONS:
             return state
     }
