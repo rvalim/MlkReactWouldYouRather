@@ -22,6 +22,7 @@ class App extends Component {
       <div>
         <Router>
           <Nav />
+          <Route path="/" exact component={Login} />
           <Route path="/login" component={Login} />
           <Fragment>
             <PrivateRoute path="/answer" component={Answer} authed={authedUser}/>

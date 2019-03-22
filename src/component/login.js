@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import { Redirect } from "react-router-dom";
 import * as authAction from '../action/authedUser'
 
 class Login extends Component {
@@ -21,15 +22,16 @@ class Login extends Component {
     renderOption = person => <option key={person.id} value={person.id}>{person.name}</option>
     
     render() {
-        let {users} = this.props
+        let {users, authedUser} = this.props
         
-        return (<div>
+        return authedUser? <Redirect to="/answer" /> : 
+            <div>
             <select onChange={this.handleChange.bind(this)} value={this.state.selectedUser}>
                 <option value="">Selecione um usuario</option>
                 {Object.keys(users).map(u => this.renderOption(users[u]))}
             </select>
             <button onClick={this.Login.bind(this)}><span>>></span></button>
-        </div>)
+        </div>
     }
 
 }
