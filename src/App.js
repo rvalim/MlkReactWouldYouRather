@@ -6,7 +6,7 @@ import { handleInitialData } from './action/shared'
 import Login from './component/login'
 import AddQuestion from './component/addQuestion'
 import Answer from './component/answer'
-import Answers from './component/answereds'
+import History from './component/history'
 import Nav from './component/nav'
 
 class App extends Component {
@@ -27,8 +27,8 @@ class App extends Component {
                 <Fragment>
                   <Route path="/" exact component={Answer} />
                   <Route path="/add" component={AddQuestion} />
-                  <Route path="/history" component={Answers} />
-                  <Route path="/leaderboard" component={Answers} />
+                  <Route path="/history" component={History} />
+                  <Route path="/leaderboard" component={null} />
                 </Fragment>
               }
         </Router>

@@ -10,7 +10,7 @@ function users(state = {}, action) {
         case SET_USERS:
             return {
               ...state,
-              ...state.users
+              ...action.users
             }
     }
 

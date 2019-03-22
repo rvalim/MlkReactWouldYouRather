@@ -9,7 +9,7 @@ export function getUsers() {
 
 export function setUsers(users) {
     return {
-        type: GET_USERS,
+        type: SET_USERS,
         users
     }
 }
