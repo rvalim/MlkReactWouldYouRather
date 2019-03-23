@@ -18,18 +18,9 @@ class Card extends Component {
 function mapStateToProps({ users, questions }, { uid, qid, title }) {
     const question = qid ? questions[qid] : null
     const user = question? users[question.author] : users[uid]
-    /*user.nQuestions = user.questions.length
-    user.nAnswers = Object.keys(user.answers).length
-    
-    if (question)
-        question.nAnswers = {
-            nA: question.optionOne.votes.length,
-            nB: question.optionTwo.votes.length
-        }*/
 
     return {
         user,
-        question,
         title
     }
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Card from './card'
 
 class QuestionPoll extends React.Component {
 	handleDetails(qid) {
@@ -11,13 +12,13 @@ class QuestionPoll extends React.Component {
 		const optionOne = question.optionOne.text
 
 		return (
-			<div key={id}>
+			<Card key={id} qid={id}>
 				<h3>Would you rather</h3>
                 <div><strong>...{optionOne}...</strong></div>
 				<button onClick={() => this.handleDetails(id)}>
 					<strong>View Poll</strong>
 				</button>
-			</div>
+			</Card>
 		)
 	}
 

@@ -1,19 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
-const principal = {
-    width: '100%'
-}
+import Card from './card'
 
 const first = {
-    width: '48%'
-    , float: 'left'
-    , border: '1px solid black'
+    border: '1px solid black'
 }
 const second = {
-    width: '48%'
-    , float: 'right'
-    , border: '1px solid red'
+    border: '1px solid red'
 }
 const choosen = {
     color: 'red'
@@ -26,7 +19,7 @@ class AnswerList extends React.Component {
 
     formatQuestion(question, option) {
         return( 
-            <div style={principal} key={question.id}>
+            <Card key={question.id} qid={question.id} >
                  <div style={first}>
                      <strong style={option === "optionOne" ? choosen : undefined}>
                          {question.optionOne.text}
@@ -37,7 +30,7 @@ class AnswerList extends React.Component {
                          {question.optionTwo.text}
                      </strong>
                  </div>
-             </div>
+             </Card>
         )
     }
 

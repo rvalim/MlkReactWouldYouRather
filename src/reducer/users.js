@@ -9,18 +9,26 @@ function users(state = {}, action) {
         case GET_USERS:
             return state
         case SET_USERS:
+            const { users } = action
+
             return {
                 ...state,
-                ...action.users
+                ...users
             }
         case ANS_QUESTION:
             const {authedUser, qid, answer} = action
-            const aux = state
-            aux[authedUser].answers[qid] = answer
-            
+
             return {
-                ...aux
-            }
+                ...state,
+                [authedUser]: {
+                    ...state[authedUser],
+                    nAnswers: Object.keys(state[authedUser].answers).length + 1,
+                    answers: {
+                        ...state[authedUser].answers,
+                        [qid]: answer
+                    }
+                }
+            } 
         default:
             return state
     }
