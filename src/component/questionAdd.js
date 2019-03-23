@@ -2,7 +2,7 @@ import React from 'react'
 import * as action from '../action/questions'
 import store from '../store/store'
 
-class Createquestion extends React.Component {
+class questionAdd extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         let question = {
@@ -36,4 +36,4 @@ class Createquestion extends React.Component {
     }
 }
 
-export default Createquestion
+export default questionAdd

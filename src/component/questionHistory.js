@@ -12,7 +12,7 @@ const choosen = {
     color: 'red'
 }
 
-class AnswerList extends React.Component {
+class questionHistory extends React.Component {
     getQuestion(id) {
         return this.props.options.find(p => p.id === id)
     }
@@ -67,4 +67,4 @@ function mapStateToProps({ authedUser, users , questions }){
     }
 }
 
-export default connect(mapStateToProps)(AnswerList)
+export default connect(mapStateToProps)(questionHistory)
