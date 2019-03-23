@@ -30,6 +30,11 @@ export default function Nav () {
             logout
           </NavLink>
         </li>
+        <li>
+          <NavLink to='/poll' activeClassName='active'>
+            poll
+          </NavLink>
+        </li>
       </ul>
     </nav>
   )

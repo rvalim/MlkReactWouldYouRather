@@ -5,8 +5,9 @@ import './App.css';
 import PrivateRoute from './component/privateRoute'
 import { handleInitialData } from './action/shared'
 import Login from './component/login'
-import AddQuestion from './component/addQuestion'
-import Answer from './component/answer'
+import AddQuestion from './component/add'
+import Question from './component/question'
+import Poll from './component/poll'
 import History from './component/history'
 import LogoutPage from './component/logout'
 import Leaderboard from './component/leaderboard'
@@ -31,7 +32,8 @@ class App extends Component {
           <Nav />
           <Route path="/login" component={Login} />
           <Fragment>
-            <PrivateRoute path="/answer" component={Answer}/>
+            <PrivateRoute path="/question/:id" component={Question}/>
+            <PrivateRoute path="/poll" component={Poll}/>
             <PrivateRoute path="/add" component={AddQuestion} />
             <PrivateRoute path="/history" component={History} />
             <PrivateRoute path="/logout" component={LogoutPage} />
