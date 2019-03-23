@@ -5,9 +5,9 @@ import './App.css';
 import PrivateRoute from './component/privateRoute'
 import { handleInitialData } from './action/shared'
 import Login from './component/login'
-import AddQuestion from './component/add'
 import Question from './component/question'
-import Poll from './component/poll'
+import QuestionAdd from './component/add'
+import QuestionPoll from './component/questionPoll'
 import History from './component/history'
 import LogoutPage from './component/logout'
 import Leaderboard from './component/leaderboard'
@@ -24,7 +24,6 @@ class App extends Component {
   }
 
   render() {
-    const {authedUser} =this.props
     return (
       <div>
         {this.formatTitle()}
@@ -33,8 +32,8 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Fragment>
             <PrivateRoute path="/question/:id" component={Question}/>
-            <PrivateRoute path="/poll" component={Poll}/>
-            <PrivateRoute path="/add" component={AddQuestion} />
+            <PrivateRoute path="/poll" component={QuestionPoll}/>
+            <PrivateRoute path="/add" component={QuestionAdd} />
             <PrivateRoute path="/history" component={History} />
             <PrivateRoute path="/logout" component={LogoutPage} />
             <PrivateRoute path="/leaderboard" component={Leaderboard} />

@@ -24,7 +24,7 @@ class Login extends Component {
     render() {
         let {users, authedUser} = this.props
         
-        return authedUser? <Redirect to="/answer" /> : 
+        return authedUser? <Redirect to="/poll" /> : 
             <div>
             <select onChange={this.handleChange.bind(this)} value={this.state.selectedUser}>
                 <option value="">Selecione um usuario</option>
