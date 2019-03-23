@@ -1,25 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Card from './card'
 
 class LeaderBoard extends Component {
     formatCard(user) {
-        const score = 0
-        const nAnswers = Object.keys(user.answers).length
-        const nQuestions = user.questions.length
-
         return (
-            <div key={user.id}>
-                <h2>{user.name}</h2>
-                <div>thumbnail</div>
-                <div><span>Answered question</span><h3>{nAnswers}</h3></div>
-                <div><span>Created questions</span><h3>{nQuestions}</h3></div>
+            <Card key={user.id} uid={user.id} title=''>
                 <div>
-                    <div>Score</div>
-                    <div>{nAnswers + nQuestions}</div>
+                    <div>Created questions: {user.nQuestions}</div>
+                    <div>Answered questions: {user.nAnswers}</div>
+                    <div>Score: {user.score}</div>
                 </div>
-            </div>
+            </Card>
         )
     }
+
     render() {
         var { users } = this.props
         return Object.keys(users).map(p => this.formatCard(users[p]))
@@ -27,9 +22,22 @@ class LeaderBoard extends Component {
 }
 
 function mapStateToProps({ authedUser, users }) {
+    const aux = Object.keys(users).map(p => {
+        const user = users[p]
+        const nAnswers = Object.keys(user.answers).length
+        const nQuestions = user.questions.length
+
+        return {
+            ...user,
+            nAnswers,
+            nQuestions,
+            score: nAnswers + nQuestions
+        }
+    }).sort((a, b) => b.score - a.score)
+
     return {
         authedUser,
-        users
+        users: aux
     }
 }
 
