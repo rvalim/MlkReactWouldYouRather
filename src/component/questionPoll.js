@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-class Poll extends React.Component {
+class QuestionPoll extends React.Component {
 	handleDetails(qid) {
         this.props.history.push(`/question/${qid}`)
 	}
@@ -45,4 +45,4 @@ function mapStateToProps({ authedUser, questions, users }) {
 	}
 }
 
-export default connect(mapStateToProps)(Poll)
+export default connect(mapStateToProps)(QuestionPoll)

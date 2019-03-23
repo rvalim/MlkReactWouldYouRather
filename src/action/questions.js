@@ -2,13 +2,6 @@ import * as data from '../utils/data'
 
 export const ADD_QUESTION = 'ADD_QUESTION'
 export const SET_QUESTIONS = 'SET_QUESTIONS'
-export const GET_ALL_QUESTIONS = 'GET_ALL_QUESTIONS'
-
-function _getAllQuestions() {
-    return {
-        type: GET_ALL_QUESTIONS
-    }
-}
 
 function _addQuestion(question) {
     return {
@@ -36,10 +29,4 @@ export function addQuestion(question) {
     }
 }
 
-export function getAllQuestions() {
-    return (dispatch, getState) => {
-        return data._getQuestions()
-            .then(question => dispatch(_getAllQuestions(question)))
-    }
-}
 
