@@ -13,3 +13,4 @@ export function logout() {
     id: null
   }
 }
+

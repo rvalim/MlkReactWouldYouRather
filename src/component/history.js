@@ -43,7 +43,7 @@ class AnswerList extends React.Component {
 
     listAllAnswers() {
         const {answers, questions} = this.props
-        const keys = Object.keys(answers)
+        const keys = Object.keys(questions)
 
         return (
             <div>
@@ -64,10 +64,13 @@ class AnswerList extends React.Component {
 
 function mapStateToProps({ authedUser, users , questions }){
     const aux = users[authedUser].answers
-    
+	const filtered = Object.keys(aux)
+        .map(p => questions[p])
+        .sort((a,b) => b.timestamp - a.timestamp)
+
     return {
         answers: aux, 
-        questions
+        questions: filtered
     }
 }
 

@@ -30,7 +30,7 @@ class Answer extends React.Component {
 	}
 
 	handleAnswer(questionId, answer) {
-		this.props.dispatch(action.chooseOne(questionId, answer))
+		this.props.dispatch(action.answerQuestion(questionId, answer))
 	}
 
 	render() {
@@ -45,9 +45,15 @@ class Answer extends React.Component {
 	}
 }
 
-function mapStateToProps({ questions }) {
+function mapStateToProps({ authedUser, questions, users }) {
+	const user = users[authedUser]
+	const filtered = Object.keys(questions)
+		.map(p => user.answers[p] === undefined ? questions[p] : undefined)
+		.filter(p => p !== undefined)
+		.sort((a,b) => b.timestamp - a.timestamp)
+
 	return {
-		questions
+		questions : filtered
 	}
 }
 
