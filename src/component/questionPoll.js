@@ -5,7 +5,6 @@ import {Button, Alert} from 'react-bootstrap'
 
 class QuestionPoll extends React.Component {
 	handleDetails(qid) {
-console.log(this.props.history)
 		this.props.history.push(`/question/${qid}`)
 	}
 

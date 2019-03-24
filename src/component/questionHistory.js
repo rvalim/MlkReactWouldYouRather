@@ -52,10 +52,7 @@ function mapStateToProps({ authedUser, users , questions }){
 	const filtered = Object.keys(aux)
         .map(p => questions[p])
         .sort((a,b) => b.timestamp - a.timestamp)
-console.log('mapstoprosp', {
-    answers: aux, 
-    questions: filtered
-})
+
     return {
         answers: aux, 
         questions: filtered
