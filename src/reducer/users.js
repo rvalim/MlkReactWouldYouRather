@@ -22,7 +22,6 @@ function users(state = {}, action) {
                 ...state,
                 [authedUser]: {
                     ...state[authedUser],
-                    nAnswers: Object.keys(state[authedUser].answers).length + 1,
                     answers: {
                         ...state[authedUser].answers,
                         [qid]: answer

@@ -1,4 +1,4 @@
-import * as data from '../utils/data'
+import * as data from '../utils/_DATA'
 
 export const ADD_QUESTION = 'ADD_QUESTION'
 export const SET_QUESTIONS = 'SET_QUESTIONS'

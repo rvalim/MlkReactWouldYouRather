@@ -14,7 +14,7 @@ class Login extends Component {
 
     handleChange = e => this.setState({ selectedUser: e.target.value})
 
-    Login(){
+    handleLogin(){
         let {dispatch} = this.props
         dispatch(authAction.setAuthedUser(this.state.selectedUser))
     }
@@ -24,13 +24,13 @@ class Login extends Component {
     render() {
         let {users, authedUser} = this.props
         
-        return authedUser? <Redirect to="/poll" /> : 
+        return authedUser? <Redirect to="/" /> : 
             <div>
             <select onChange={this.handleChange.bind(this)} value={this.state.selectedUser}>
                 <option value="">Selecione um usuario</option>
                 {Object.keys(users).map(u => this.renderOption(users[u]))}
             </select>
-            <button onClick={this.Login.bind(this)}><span>>></span></button>
+            <button onClick={this.handleLogin.bind(this)}><span>>></span></button>
         </div>
     }
 

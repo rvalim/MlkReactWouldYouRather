@@ -1,10 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Card from './card'
+import {Button, Alert} from 'react-bootstrap'
 
 class QuestionPoll extends React.Component {
 	handleDetails(qid) {
-        this.props.history.push(`/question/${qid}`)
+console.log(this.props.history)
+		this.props.history.push(`/question/${qid}`)
 	}
 
 	formatPoll(question) {
@@ -12,12 +14,11 @@ class QuestionPoll extends React.Component {
 		const optionOne = question.optionOne.text
 
 		return (
-			<Card key={id} qid={id}>
-				<h3>Would you rather</h3>
+			<Card key={id} qid={id} title='Asked by'>
                 <div><strong>...{optionOne}...</strong></div>
-				<button onClick={() => this.handleDetails(id)}>
+				<Button onClick={() => this.handleDetails(id)}>
 					<strong>View Poll</strong>
-				</button>
+				</Button>
 			</Card>
 		)
 	}
@@ -28,6 +29,7 @@ class QuestionPoll extends React.Component {
 
 		return (
 			<div>
+				{keys.length === 0 && <Alert variant='info'><strong>There is no poll available</strong></Alert>}
 				{keys.map(p => this.formatPoll(questions[p]))}
 			</div>
         )

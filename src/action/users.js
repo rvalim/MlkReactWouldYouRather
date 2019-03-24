@@ -1,4 +1,4 @@
-import * as data from '../utils/data'
+import * as data from '../utils/_DATA'
 
 export const GET_USERS = 'GET_USERS'
 export const SET_USERS = 'SET_USERS'

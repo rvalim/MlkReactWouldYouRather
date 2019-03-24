@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Card from './card'
+import {Alert} from 'react-bootstrap'
 
 class LeaderBoard extends Component {
     formatCard(user) {
         return (
-            <Card key={user.id} uid={user.id} title=''>
+            <Card key={user.id} uid={user.id} title='Asked by'>
                 <div>
                     <div>Created questions: {user.nQuestions}</div>
                     <div>Answered questions: {user.nAnswers}</div>
-                    <div>Score: {user.score}</div>
+                    <Alert variant='primary'>Score: {user.score}</Alert>
                 </div>
             </Card>
         )

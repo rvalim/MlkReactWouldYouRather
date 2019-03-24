@@ -1,16 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Card from './card'
-
-const first = {
-    border: '1px solid black'
-}
-const second = {
-    border: '1px solid red'
-}
-const choosen = {
-    color: 'red'
-}
+import {Alert} from 'react-bootstrap'
+import { formatStatisticsResult } from '../utils/helper'
 
 class questionHistory extends React.Component {
     getQuestion(id) {
@@ -18,29 +10,29 @@ class questionHistory extends React.Component {
     }
 
     formatQuestion(question, option) {
+        const sA = question.optionOne.text
+        const sB = question.optionTwo.text
+        const nA = question.optionOne.votes.length
+        const nB = question.optionTwo.votes.length
+        const total = nA + nB
+        
         return( 
-            <Card key={question.id} qid={question.id} >
-                 <div style={first}>
-                     <strong style={option === "optionOne" ? choosen : undefined}>
-                         {question.optionOne.text}
-                     </strong>
-                 </div>
-                 <div style={second}>
-                     <strong style={option === "optionTwo" ? choosen : undefined}>
-                         {question.optionTwo.text}
-                     </strong>
-                 </div>
+            <Card key={question.id} uid={question.author} title='Asked by' >
+                <Alert variant='primary'>
+                    <h2>You rather {option === 'optionOne'? sA : sB }</h2>
+                </Alert>
+                {formatStatisticsResult(sA, nA, total) }
+                {formatStatisticsResult(sB, nB, total) }
              </Card>
         )
     }
 
     listAllAnswers() {
         const {answers, questions} = this.props
-        const keys = Object.keys(questions)
 
         return (
             <div>
-                {keys.map(p => this.formatQuestion(questions[p], answers[p]))}
+                {questions.map(q => this.formatQuestion(q, answers[q.id]))}
             </div>
         )
 
@@ -60,7 +52,10 @@ function mapStateToProps({ authedUser, users , questions }){
 	const filtered = Object.keys(aux)
         .map(p => questions[p])
         .sort((a,b) => b.timestamp - a.timestamp)
-
+console.log('mapstoprosp', {
+    answers: aux, 
+    questions: filtered
+})
     return {
         answers: aux, 
         questions: filtered

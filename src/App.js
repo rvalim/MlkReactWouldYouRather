@@ -1,17 +1,18 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
-import './App.css';
-import PrivateRoute from './component/privateRoute'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { handleInitialData } from './action/shared'
-import Login from './component/login'
+import Nav from './component/nav'
+import PrivateRoute from './component/privateRoute'
+import Home from './component/home'
 import Question from './component/question'
 import QuestionAdd from './component/questionAdd'
-import QuestionPoll from './component/questionPoll'
-import QuestionHistory from './component/questionHistory'
-import LogoutPage from './component/logout'
 import Leaderboard from './component/leaderboard'
-import Nav from './component/nav'
+import Login from './component/login'
+import LogoutPage from './component/logout'
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 
 class App extends Component {
   componentDidMount() {
@@ -31,10 +32,9 @@ class App extends Component {
           <Nav />
           <Route path="/login" component={Login} />
           <Fragment>
+            <PrivateRoute path="/" exact component={Home} />
             <PrivateRoute path="/question/:id" component={Question}/>
-            <PrivateRoute path="/poll" component={QuestionPoll}/>
             <PrivateRoute path="/add" component={QuestionAdd} />
-            <PrivateRoute path="/history" component={QuestionHistory} />
             <PrivateRoute path="/logout" component={LogoutPage} />
             <PrivateRoute path="/leaderboard" component={Leaderboard} />
           </Fragment>

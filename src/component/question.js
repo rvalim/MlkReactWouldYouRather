@@ -1,11 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as action from '../action/users'
-import {formatPercentage} from '../utils/helper'
+import { formatStatisticsResult } from '../utils/helper'
 import Card from './card'
+import { Button, Alert } from 'react-bootstrap'
 
 class question extends React.Component {
-	constructor(props){
+	constructor(props) {
 		super(props)
 
 		this.state = {
@@ -13,30 +14,30 @@ class question extends React.Component {
 		}
 	}
 
-	handleQuestion(qid, question) {
-		const {dispatch, history} = this.props
+	handleQuestion(qid, answer) {
+		const { dispatch } = this.props
 
-		dispatch(action.answerQuestion(qid, question))
+		dispatch(action.answerQuestion(qid, answer))
 		//history.push(`/poll`)
-		
-		this.setState({showCard: true})
-	}
-	
-	formatStatistics(question) {
-        const nA = question.optionOne.votes.length
-        const nB = question.optionTwo.votes.length
-        const total = nA + nB
 
-        return (
-            <div>
-                <h3>Would you rather...</h3>
-                <h4>{question.optionOne.text}: {formatPercentage(nA, total)}</h4>
-                <h3>OR</h3>
-                <h4>{question.optionTwo.text}: {formatPercentage(nB, total)}</h4>
-                <h4>total votes {total}</h4>
-            </div>
-        )
-    }
+		this.setState({ showCard: true, answer })
+	}
+
+	formatStatistics(question) {
+		const nA = question.optionOne.votes.length
+		const nB = question.optionTwo.votes.length
+		const total = nA + nB
+
+		return (
+			<div>
+				<Alert variant='primary'>
+					<h3>{this.state.answer}</h3>
+				</Alert>
+				{formatStatisticsResult(question.optionOne.text, nA, total)}
+				{formatStatisticsResult(question.optionTwo.text, nB, total)}
+			</div>
+		)
+	}
 
 	formatQuestion(question) {
 		const { id } = question
@@ -45,25 +46,24 @@ class question extends React.Component {
 
 		return (
 			<div>
-				<h3>Would you rather</h3>
-				<button onClick={() => this.handleQuestion(id, optionOne)}>
+				<Button onClick={() => this.handleQuestion(id, optionOne)}>
 					<strong>{optionOne}</strong>
-				</button>
+				</Button>
 				<h4>OR</h4>
-				<button onClick={() => this.handleQuestion(id, optionTwo)}>
+				<Button onClick={() => this.handleQuestion(id, optionTwo)}>
 					<strong>{optionTwo}</strong>
-				</button>
+				</Button>
 			</div>
-			)
+		)
 	}
 
 	render() {
 		const { question } = this.props
 
 		return (
-			<Card qid={question.id}>
-				{this.state.showCard? 
-					this.formatStatistics(question):
+			<Card qid={question.id} title='Asked by'>
+				{this.state.showCard ?
+					this.formatStatistics(question) :
 					this.formatQuestion(question)}
 			</Card>
 		)
@@ -71,7 +71,7 @@ class question extends React.Component {
 }
 
 function mapStateToProps({ questions }, props) {
-	const {id} = props.match.params
+	const { id } = props.match.params
 
 	return {
 		question: questions[id]
