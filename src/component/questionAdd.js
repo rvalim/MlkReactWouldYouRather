@@ -11,6 +11,11 @@ class questionAdd extends React.Component {
             optionTwoText: this.questionB.value
         }
         
+        if (question.optionOneText === question.optionTwoText){
+            alert('the options can not be equal')
+            return 
+        }
+
         store.dispatch(action.addQuestion(question))
         this.props.history.push('/')
     }
@@ -25,12 +30,14 @@ class questionAdd extends React.Component {
                         <input
                             type='text'
                             placeholder='Example: Work all day long'
+                            required
                             ref={(input) => this.questionA = input} />
 
                         <h5>or</h5>
                         <input
                             type='text'
                             placeholder='Example: Going to the beach'
+                            required
                             ref={(input) => this.questionB = input} />
                         <div></div>
                     </Card.Body>
