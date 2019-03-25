@@ -22,9 +22,10 @@ class Login extends Component {
     renderOption = person => <option key={person.id} value={person.id}>{person.name}</option>
     
     render() {
-        let {users, authedUser} = this.props
+        let {users, authedUser, location} = this.props
+        let state = location.state? location.state : {from:"/"}
         
-        return authedUser? <Redirect to="/" /> : 
+        return authedUser? <Redirect to={state.from} /> : 
             <div>
             <select onChange={this.handleChange.bind(this)} value={this.state.selectedUser}>
                 <option value="">Selecione um usuario</option>
