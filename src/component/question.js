@@ -1,16 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Button, Alert } from 'react-bootstrap'
 import * as action from '../action/users'
 import { formatStatisticsResult } from '../utils/helper'
 import Card from './card'
-import { Button, Alert } from 'react-bootstrap'
+import NoMatch from './nomatch'
 
 class question extends React.Component {
 	constructor(props) {
 		super(props)
 
 		this.state = {
-			showCard: false
+			showCard: props.showCard,
+			answer: props.answer
 		}
 	}
 
@@ -31,7 +33,7 @@ class question extends React.Component {
 		return (
 			<div>
 				<Alert variant='primary'>
-					<h3>{this.state.answer}</h3>
+					<h3>{this.state.answer} (Your choice)</h3>
 				</Alert>
 				{formatStatisticsResult(question.optionOne.text, nA, total)}
 				{formatStatisticsResult(question.optionTwo.text, nB, total)}
@@ -60,6 +62,10 @@ class question extends React.Component {
 	render() {
 		const { question } = this.props
 
+		if (!question) {
+			return <NoMatch location={this.props.location}/>
+		}
+
 		return (
 			<Card qid={question.id} title='Asked by'>
 				{this.state.showCard ?
@@ -70,11 +76,15 @@ class question extends React.Component {
 	}
 }
 
-function mapStateToProps({ questions }, props) {
+function mapStateToProps({ authedUser, users, questions }, props) {
 	const { id } = props.match.params
-
+	const user = users[authedUser]
+	const showCard = (user.answers[id])? true : false
+	
 	return {
-		question: questions[id]
+		question: questions[id],
+		showCard,
+		answer: showCard? questions[id][user.answers[id]].text : null
 	}
 }
 

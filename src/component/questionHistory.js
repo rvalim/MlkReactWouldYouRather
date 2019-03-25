@@ -1,10 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Card from './card'
-import {Alert} from 'react-bootstrap'
+import {Alert, Button} from 'react-bootstrap'
 import { formatStatisticsResult } from '../utils/helper'
 
 class questionHistory extends React.Component {
+	handleDetails(qid) {
+		this.props.history.push(`/question/${qid}`)
+    }
+    
     getQuestion(id) {
         return this.props.options.find(p => p.id === id)
     }
@@ -23,6 +27,9 @@ class questionHistory extends React.Component {
                 </Alert>
                 {formatStatisticsResult(sA, nA, total) }
                 {formatStatisticsResult(sB, nB, total) }
+                <Button onClick={() => this.handleDetails(question.id)}>
+					<strong>View Poll</strong>
+				</Button>
              </Card>
         )
     }
