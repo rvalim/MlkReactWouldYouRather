@@ -23,8 +23,9 @@ class Login extends Component {
     
     render() {
         let {users, authedUser, location} = this.props
-        let state = location.state? location.state : {from:"/"}
-        
+        let state = {location}
+        state.from = state && state.from === '/logout' || !state? {from:"/"} : state
+
         return authedUser? <Redirect to={state.from} /> : 
             <div>
             <select onChange={this.handleChange.bind(this)} value={this.state.selectedUser}>
