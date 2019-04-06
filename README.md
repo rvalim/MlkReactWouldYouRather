@@ -10,16 +10,19 @@ Need to be honest with you, I don't give so much attention to the CSS so I tried
 
 Bellow there is some comments about the application structure, some obvious things like what action _question_ does, triggers the actions for questions, so it was not described here ( =D ).  
 
-├── src                   # Where the intelligence lives
-|   ├── action            # All the actions responsible to trigger the updates
-|   ├── component         # Customized components 
-|   ├── middleware        # Middlewares for the app, the logger stays in here
-|   ├── store             # Where the store lives
-|   └── utils             # Place to put shared files
-|       └── _Data.js      # Where Udacity's initial code stays
-├── App.js                # Where all the routes was made, and the links for the components
-└── index.js              # The place where I put the provider
-
+    .
+    ├── ...
+    ├── src                   # Where the intelligence lives
+    |   ├── action            # All the actions responsible to trigger the updates
+    |   ├── component         # Customized components 
+    |   ├── middleware        # Middlewares for the app, the logger stays in here
+    |   ├── store             # Where the store lives
+    |   └── utils             # Place to put shared files
+    |       └── _Data.js      # Where Udacity's initial code stays
+    ├── App.js                # Where all the routes was made, and the links for the components
+    ├── index.js              # The place where I put the provider
+    └── ...
+  
 ## First steps
 
 All you need to do is run the command bellow to install all dependencies
